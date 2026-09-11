@@ -1,42 +1,45 @@
 const http = require('http');
-const server = http.createServer((req, res) => {
-res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-});
-const PORT = 3000;
-server.listen(PORT, () => {
-console.log(`Сервер запущен на http://localhost:${PORT}`);
-});
+const { EventEmitter } = require('events');
+const logger = require('./logger');
+const fs = require('fs');
 
-const student = {
-    fullName: "Матеишин Никита Анатольевич",
-    group: "478",
-    journalNumber: 12
-};
-
-function calculatePi(precision) {
-    let pi = 0;
-    let sign = 1;
-    let denominator = 1;
-    let iterations = 1;
-    for (let i = 0; i < precision; i++) {
-        iterations *= 10;
-    }
-    if (iterations > 1000000) {
-        iterations = 1000000;
-    }
-    for (let i = 0; i < iterations; i++) {
-        pi += sign / denominator;
-        sign = -sign;
-        denominator += 2;
-    }
-    pi *= 4;
-    let piString = String(pi);
-    let dotIndex = piString.indexOf('.');
-    if (dotIndex !== -1) {
-        piString = piString.substring(0, dotIndex + precision + 1);
-    }
-    return piString;
+class AppServer extends EventEmitter{
+    start(port){
+        this.server = http.createServer((req, res) => {
+            this.emit('received',{url: req.url,method: req.method})
+            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+            res.end(`Матеиишин Никита\n478`);
+    });
+    this.server.listen(port, () => {
+        this.emit('started', port);
+    });
 }
-console.log(student.fullName);
-console.log(student.group);
-console.log(calculatePi(student.journalNumber));
+    stop(){
+        this.server.close(() => {
+            this.emit('closed');
+    });
+    }
+}
+const PORT = 1344; 
+
+const appServer = new AppServer();
+
+logger.setupLogger(appServer);
+
+appServer.on('started', (port) => {
+    console.log(`Server started on port ${port}`);
+});
+
+appServer.on('closed', () => {
+    console.log(`Server stoped`);
+});
+
+appServer.on('received', (req) => {
+    console.log(`Got received ${req.url} ${req.method}`);
+});
+
+appServer.start(PORT);
+
+setTimeout(() => { 
+appServer.stop(); 
+}, 10000); 

@@ -1,0 +1,10 @@
+[11.09.2026]Server started on port 1344
+[11.09.2026] Server stoped
+[11.09.2026]Server started on port 1344
+[11.09.2026] Got received / GET
+[11.09.2026] Got received /favicon.ico GET
+[11.09.2026]Server started on port 1344
+[11.09.2026] Server stoped
+[11.09.2026]Server started on port 1344
+[11.09.2026] Got received / GET
+[11.09.2026] Got received /favicon.ico GET
