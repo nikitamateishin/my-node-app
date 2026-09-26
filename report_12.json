@@ -1,0 +1,257 @@
+{
+  "variant": 12,
+  "scannedDirectory": "C:\\node",
+  "scanDate": "26.09.2026, 09:51:56",
+  "allowedExtensions": [
+    ".js",
+    ".json",
+    ".txt",
+    ".md"
+  ],
+  "totalFiles": 35,
+  "totalFolders": 60,
+  "totalSize": {
+    "bytes": 4513775,
+    "kb": 4407.98,
+    "mb": 4.3
+  },
+  "filesByExtension": {
+    ".txt": [
+      {
+        "name": "above500_12.txt",
+        "path": "C:\\node\\above500_12.txt",
+        "size": 1490153
+      },
+      {
+        "name": "data_12.txt",
+        "path": "C:\\node\\data_12.txt",
+        "size": 2977913
+      },
+      {
+        "name": "logs.txt",
+        "path": "C:\\node\\logs.txt",
+        "size": 374
+      },
+      {
+        "name": "processed_12.txt",
+        "path": "C:\\node\\processed_12.txt",
+        "size": 316
+      },
+      {
+        "name": "info.txt",
+        "path": "C:\\node\\project_12\\data\\info.txt",
+        "size": 96
+      },
+      {
+        "name": "info.txt",
+        "path": "C:\\node\\project_12\\data\\input\\info.txt",
+        "size": 88
+      },
+      {
+        "name": "info.txt",
+        "path": "C:\\node\\project_12\\data\\results\\info.txt",
+        "size": 87
+      },
+      {
+        "name": "info.txt",
+        "path": "C:\\node\\project_12\\info.txt",
+        "size": 77
+      },
+      {
+        "name": "info.txt",
+        "path": "C:\\node\\project_12\\src\\components\\info.txt",
+        "size": 76
+      },
+      {
+        "name": "info.txt",
+        "path": "C:\\node\\project_12\\src\\info.txt",
+        "size": 73
+      },
+      {
+        "name": "info.txt",
+        "path": "C:\\node\\project_12\\src\\modules\\info.txt",
+        "size": 96
+      },
+      {
+        "name": "info.txt",
+        "path": "C:\\node\\project_12\\src\\utils\\info.txt",
+        "size": 98
+      },
+      {
+        "name": "student_12.txt",
+        "path": "C:\\node\\student_12.txt",
+        "size": 535
+      }
+    ],
+    ".js": [
+      {
+        "name": "directory_structure.js",
+        "path": "C:\\node\\directory_structure.js",
+        "size": 2824
+      },
+      {
+        "name": "fileOperations.js",
+        "path": "C:\\node\\fileOperations.js",
+        "size": 2501
+      },
+      {
+        "name": "fileOperationsHybrid.js",
+        "path": "C:\\node\\fileOperationsHybrid.js",
+        "size": 6628
+      },
+      {
+        "name": "fileOperationsPromises.js",
+        "path": "C:\\node\\fileOperationsPromises.js",
+        "size": 2565
+      },
+      {
+        "name": "index.js",
+        "path": "C:\\node\\index.js",
+        "size": 1111
+      },
+      {
+        "name": "logger.js",
+        "path": "C:\\node\\logger.js",
+        "size": 820
+      },
+      {
+        "name": "scan_directory.js",
+        "path": "C:\\node\\scan_directory.js",
+        "size": 4111
+      },
+      {
+        "name": "stream_processing.js",
+        "path": "C:\\node\\stream_processing.js",
+        "size": 5464
+      },
+      {
+        "name": "student_file.js",
+        "path": "C:\\node\\student_file.js",
+        "size": 1581
+      },
+      {
+        "name": "test-callbacks.js",
+        "path": "C:\\node\\test-callbacks.js",
+        "size": 3417
+      },
+      {
+        "name": "test-hybrid.js",
+        "path": "C:\\node\\test-hybrid.js",
+        "size": 3138
+      },
+      {
+        "name": "test-promises.js",
+        "path": "C:\\node\\test-promises.js",
+        "size": 2809
+      }
+    ],
+    ".json": [
+      {
+        "name": "package.json",
+        "path": "C:\\node\\package.json",
+        "size": 505
+      },
+      {
+        "name": "report_12.json",
+        "path": "C:\\node\\report_12.json",
+        "size": 5831
+      }
+    ],
+    ".md": [
+      {
+        "name": "README.md",
+        "path": "C:\\node\\project_12\\data\\input\\README.md",
+        "size": 62
+      },
+      {
+        "name": "README.md",
+        "path": "C:\\node\\project_12\\data\\README.md",
+        "size": 56
+      },
+      {
+        "name": "README.md",
+        "path": "C:\\node\\project_12\\data\\results\\README.md",
+        "size": 63
+      },
+      {
+        "name": "README.md",
+        "path": "C:\\node\\project_12\\README.md",
+        "size": 62
+      },
+      {
+        "name": "README.md",
+        "path": "C:\\node\\project_12\\src\\components\\README.md",
+        "size": 66
+      },
+      {
+        "name": "README.md",
+        "path": "C:\\node\\project_12\\src\\modules\\README.md",
+        "size": 63
+      },
+      {
+        "name": "README.md",
+        "path": "C:\\node\\project_12\\src\\README.md",
+        "size": 55
+      },
+      {
+        "name": "README.md",
+        "path": "C:\\node\\project_12\\src\\utils\\README.md",
+        "size": 61
+      }
+    ]
+  },
+  "top5Largest": [
+    {
+      "name": "data_12.txt",
+      "path": "C:\\node\\data_12.txt",
+      "size": 2977913
+    },
+    {
+      "name": "above500_12.txt",
+      "path": "C:\\node\\above500_12.txt",
+      "size": 1490153
+    },
+    {
+      "name": "fileOperationsHybrid.js",
+      "path": "C:\\node\\fileOperationsHybrid.js",
+      "size": 6628
+    },
+    {
+      "name": "report_12.json",
+      "path": "C:\\node\\report_12.json",
+      "size": 5831
+    },
+    {
+      "name": "stream_processing.js",
+      "path": "C:\\node\\stream_processing.js",
+      "size": 5464
+    }
+  ],
+  "top5Smallest": [
+    {
+      "name": "README.md",
+      "path": "C:\\node\\project_12\\src\\README.md",
+      "size": 55
+    },
+    {
+      "name": "README.md",
+      "path": "C:\\node\\project_12\\data\\README.md",
+      "size": 56
+    },
+    {
+      "name": "README.md",
+      "path": "C:\\node\\project_12\\src\\utils\\README.md",
+      "size": 61
+    },
+    {
+      "name": "README.md",
+      "path": "C:\\node\\project_12\\README.md",
+      "size": 62
+    },
+    {
+      "name": "README.md",
+      "path": "C:\\node\\project_12\\data\\input\\README.md",
+      "size": 62
+    }
+  ]
+}
