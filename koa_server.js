@@ -19,6 +19,48 @@ const isValidUser = (data) => {
     && data.group.trim() !== '';
 };
 
+const formatDate = (date) => {
+  const pad = (value) => String(value).padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+};
+
+const auth = async (ctx, next) => {
+  if (!ctx.get('Authorization')) {
+    ctx.status = 401;
+    ctx.body = { error: 'Требуется авторизация' };
+    return;
+  }
+
+  await next();
+};
+
+app.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (err) {
+    const status = err.status || 500;
+    ctx.status = status;
+    ctx.body = {
+      error: status === 500 ? 'Внутренняя ошибка сервера' : err.message,
+      status
+    };
+  }
+});
+
+app.use(async (ctx, next) => {
+  const startedAt = new Date();
+  const start = Date.now();
+
+  try {
+    await next();
+  } finally {
+    const duration = Date.now() - start;
+    console.log(`[${formatDate(startedAt)}] ${ctx.method} ${ctx.path} - ${duration}ms`);
+  }
+});
+
+app.use(bodyParser());
+
 router.get('/', async (ctx) => {
   const now = new Date().toLocaleString('ru-RU');
   ctx.type = 'html';
@@ -99,7 +141,14 @@ router.delete('/api/users/:id', async (ctx) => {
   ctx.body = { message: 'Пользователь удален' };
 });
 
-app.use(bodyParser());
+router.get('/protected', auth, async (ctx) => {
+  ctx.body = { message: 'Доступ разрешен' };
+});
+
+router.get('/error', async () => {
+  throw new Error('Тестовая ошибка');
+});
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 
