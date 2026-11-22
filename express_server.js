@@ -1,4 +1,6 @@
 const express = require('express');
+const compression = require('compression');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,6 +22,11 @@ const page = (title, content) => `<!DOCTYPE html>
   ${content}
 </body>
 </html>`;
+
+const formatDate = (date) => {
+  const pad = (value) => String(value).padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+};
 
 const isValidBook = (data, partial = false) => {
   if (!data || typeof data !== 'object' || Array.isArray(data)) {
@@ -51,6 +58,30 @@ const isValidBook = (data, partial = false) => {
   return true;
 };
 
+app.use((req, res, next) => {
+  const startedAt = new Date();
+  const start = Date.now();
+
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    console.log(`[${formatDate(startedAt)}] ${req.method} ${req.path} ${res.statusCode} - ${duration}ms`);
+  });
+
+  next();
+});
+
+app.use(compression({ threshold: 0 }));
+
+app.use(rateLimit({
+  windowMs: 60 * 1000,
+  limit: 100,
+  standardHeaders: true,
+  legacyHeaders: true,
+  handler: (req, res) => {
+    res.status(429).json({ error: 'Слишком много запросов', status: 429 });
+  }
+}));
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -71,6 +102,8 @@ app.get('/', (req, res) => {
     <li>PUT /api/books/:id</li>
     <li>DELETE /api/books/:id</li>
     <li>GET /api/books/search?author=Толстой</li>
+    <li>GET /error</li>
+    <li>GET /async-error</li>
   </ul>`));
 });
 
@@ -177,6 +210,25 @@ app.delete('/api/books/:id', (req, res) => {
 
   books.splice(index, 1);
   res.json({ message: 'Книга удалена' });
+});
+
+app.get('/error', (req, res) => {
+  throw new Error('Тестовая ошибка');
+});
+
+app.get('/async-error', async (req, res) => {
+  throw new Error('Асинхронная ошибка');
+});
+
+app.use((req, res) => {
+  res.status(404).json({ error: 'Маршрут не найден', status: 404 });
+});
+
+app.use((err, req, res, next) => {
+  const status = err.status || err.statusCode || 500;
+  const message = status === 500 ? 'Внутренняя ошибка сервера' : err.message;
+
+  res.status(status).json({ error: message, status });
 });
 
 app.listen(PORT, () => {
