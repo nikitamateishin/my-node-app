@@ -16,10 +16,52 @@ const page = (title, content) => `<!DOCTYPE html>
 <head>
   <meta charset="utf-8">
   <title>${title}</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background: #f3f3f3;
+      color: #2c3e50;
+      font-family: Arial, sans-serif;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 48px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    h2 {
+      margin-top: 32px;
+    }
+
+    p, li {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #6a1b9a;
+    }
+  </style>
 </head>
 <body>
-  <h1>${title}</h1>
-  ${content}
+  <main>
+    <h1>${title}</h1>
+    ${content}
+  </main>
 </body>
 </html>`;
 
@@ -87,23 +129,18 @@ app.use(express.json());
 app.get('/', (req, res) => {
   const now = new Date().toLocaleString('ru-RU');
   res.type('html').send(page('Лабораторная работа №16', `
-  <p>Студент: Матеишин Никита</p>
   <p>Группа: 478</p>
-  <p>Дата и время: ${now}</p>
-  <p>Добро пожаловать!</p>
+  <p>Текущая дата и время: ${now}</p>
+  <p>Добро пожаловать на сервер Express.js!</p>
   <h2>Доступные маршруты</h2>
   <ul>
-    <li>GET /</li>
-    <li>GET /about</li>
-    <li>GET /contacts</li>
-    <li>GET /api/books</li>
-    <li>GET /api/books/:id</li>
-    <li>POST /api/books</li>
-    <li>PUT /api/books/:id</li>
-    <li>DELETE /api/books/:id</li>
-    <li>GET /api/books/search?author=Толстой</li>
-    <li>GET /error</li>
-    <li>GET /async-error</li>
+    <li><a href="/">/</a></li>
+    <li><a href="/about">/about</a></li>
+    <li><a href="/contacts">/contacts</a></li>
+    <li><a href="/api/books">/api/books</a></li>
+    <li><a href="/api/books/search?author=Толстой">/api/books/search?author=Толстой</a></li>
+    <li><a href="/error">/error</a></li>
+    <li><a href="/async-error">/async-error</a></li>
   </ul>`));
 });
 
@@ -111,14 +148,14 @@ app.get('/about', (req, res) => {
   res.type('html').send(page('О разработчике', `
   <p>Студент: Матеишин Никита</p>
   <p>Группа: 478</p>
-  <p>Лабораторная работа №16</p>
-  <p>Тема: создание сервера на Express.js</p>`));
+  <p><a href="/">На главную</a></p>`));
 });
 
 app.get('/contacts', (req, res) => {
   res.type('html').send(page('Контакты', `
-  <p>Email: nikita@example.com</p>
-  <p>GitHub: github.com/nikitamateishin</p>`));
+  <p>Email: nikitamateishin@gmail.com</p>
+  <p>GitHub: github.com/nikitamateishin</p>
+  <p><a href="/">На главную</a></p>`));
 });
 
 app.get('/api/books', (req, res) => {
